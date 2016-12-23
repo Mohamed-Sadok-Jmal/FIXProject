@@ -1,0 +1,12 @@
+/* modify bootstrap */
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.navbar {
+    border-radius: 0px;
+}
+/* header bottom */
+.img-profile{
+	height: 40px;
+}
