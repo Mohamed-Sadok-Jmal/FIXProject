@@ -1,12 +1,20 @@
 package com.jms.fix.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="QUOTATION")
@@ -40,6 +48,10 @@ public class Quotation {
 	
 	@Column(name = "VARIATION")
 	private float variation;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="quotation", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private List<Order> orders = new ArrayList<Order>();
 
 	public int getId() {
 		return id;
@@ -113,4 +125,12 @@ public class Quotation {
 		this.variation = variation;
 	}
 
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+	
 }

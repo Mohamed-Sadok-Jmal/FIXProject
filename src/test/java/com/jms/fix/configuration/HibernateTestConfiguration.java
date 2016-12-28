@@ -26,6 +26,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan({ "com.jms.fix.dao" })
 public class HibernateTestConfiguration {
 
+	@SuppressWarnings("unused")
 	@Autowired
 	private Environment environment;
 

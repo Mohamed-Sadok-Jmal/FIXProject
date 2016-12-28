@@ -26,13 +26,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.jms.fix.controller.AppController;
-import com.jms.fix.entity.Employee;
-import com.jms.fix.service.EmployeeService;
+import com.jms.fix.entity.Client;
+import com.jms.fix.service.ClientService;
 
 public class AppControllerTest {
 
 	@Mock
-	EmployeeService service;
+	ClientService service;
 	
 	@Mock
 	MessageSource message;
@@ -41,7 +41,7 @@ public class AppControllerTest {
 	AppController appController;
 	
 	@Spy
-	List<Employee> employees = new ArrayList<Employee>();
+	List<Client> clients = new ArrayList<Client>();
 
 	@Spy
 	ModelMap model;
@@ -52,107 +52,107 @@ public class AppControllerTest {
 	@BeforeClass
 	public void setUp(){
 		MockitoAnnotations.initMocks(this);
-		employees = getEmployeeList();
+		clients = getClientList();
 	}
 	
 	@Test
-	public void listEmployees(){
-		when(service.findAllEmployees()).thenReturn(employees);
-		Assert.assertEquals(appController.listEmployees(model), "allemployees");
-		Assert.assertEquals(model.get("employees"), employees);
-		verify(service, atLeastOnce()).findAllEmployees();
+	public void listClients(){
+		when(service.findAllClients()).thenReturn(clients);
+		Assert.assertEquals(appController.listClients(model), "allclients");
+		Assert.assertEquals(model.get("clients"), clients);
+		verify(service, atLeastOnce()).findAllClients();
 	}
 	
 	@Test
-	public void newEmployee(){
-		Assert.assertEquals(appController.newEmployee(model), "registration");
-		Assert.assertNotNull(model.get("employee"));
+	public void newClient(){
+		Assert.assertEquals(appController.newClient(model), "registration");
+		Assert.assertNotNull(model.get("client"));
 		Assert.assertFalse((Boolean)model.get("edit"));
-		Assert.assertEquals(((Employee)model.get("employee")).getId(), 0);
+		Assert.assertEquals(((Client)model.get("client")).getId(), 0);
 	}
 
 
 	@Test
-	public void saveEmployeeWithValidationError(){
+	public void saveClientWithValidationError(){
 		when(result.hasErrors()).thenReturn(true);
-		doNothing().when(service).saveEmployee(any(Employee.class));
-		Assert.assertEquals(appController.saveEmployee(employees.get(0), result, model), "registration");
+		doNothing().when(service).saveClient(any(Client.class));
+		Assert.assertEquals(appController.saveClient(clients.get(0), result, model), "registration");
 	}
 
 	@Test
-	public void saveEmployeeWithValidationErrorNonUniqueSSN(){
+	public void saveClientWithValidationErrorNonUniqueSSN(){
 		when(result.hasErrors()).thenReturn(false);
-		when(service.isEmployeeSsnUnique(anyInt(), anyString())).thenReturn(false);
-		Assert.assertEquals(appController.saveEmployee(employees.get(0), result, model), "registration");
+		when(service.isClientSsnUnique(anyInt(), anyString())).thenReturn(false);
+		Assert.assertEquals(appController.saveClient(clients.get(0), result, model), "registration");
 	}
 
 	
 	@Test
-	public void saveEmployeeWithSuccess(){
+	public void saveClientWithSuccess(){
 		when(result.hasErrors()).thenReturn(false);
-		when(service.isEmployeeSsnUnique(anyInt(), anyString())).thenReturn(true);
-		doNothing().when(service).saveEmployee(any(Employee.class));
-		Assert.assertEquals(appController.saveEmployee(employees.get(0), result, model), "success");
-		Assert.assertEquals(model.get("success"), "Employee Axel registered successfully");
+		when(service.isClientSsnUnique(anyInt(), anyString())).thenReturn(true);
+		doNothing().when(service).saveClient(any(Client.class));
+		Assert.assertEquals(appController.saveClient(clients.get(0), result, model), "success");
+		Assert.assertEquals(model.get("success"), "Client Axel registered successfully");
 	}
 
 	@Test
-	public void editEmployee(){
-		Employee emp = employees.get(0);
-		when(service.findEmployeeBySsn(anyString())).thenReturn(emp);
-		Assert.assertEquals(appController.editEmployee(anyString(), model), "registration");
-		Assert.assertNotNull(model.get("employee"));
+	public void editClient(){
+		Client emp = clients.get(0);
+		when(service.findClientBySsn(anyString())).thenReturn(emp);
+		Assert.assertEquals(appController.editClient(anyString(), model), "registration");
+		Assert.assertNotNull(model.get("client"));
 		Assert.assertTrue((Boolean)model.get("edit"));
-		Assert.assertEquals(((Employee)model.get("employee")).getId(), 1);
+		Assert.assertEquals(((Client)model.get("client")).getId(), 1);
 	}
 
 	@Test
-	public void updateEmployeeWithValidationError(){
+	public void updateClientWithValidationError(){
 		when(result.hasErrors()).thenReturn(true);
-		doNothing().when(service).updateEmployee(any(Employee.class));
-		Assert.assertEquals(appController.updateEmployee(employees.get(0), result, model,""), "registration");
+		doNothing().when(service).updateClient(any(Client.class));
+		Assert.assertEquals(appController.updateClient(clients.get(0), result, model,""), "registration");
 	}
 
 	@Test
-	public void updateEmployeeWithValidationErrorNonUniqueSSN(){
+	public void updateClientWithValidationErrorNonUniqueSSN(){
 		when(result.hasErrors()).thenReturn(false);
-		when(service.isEmployeeSsnUnique(anyInt(), anyString())).thenReturn(false);
-		Assert.assertEquals(appController.updateEmployee(employees.get(0), result, model,""), "registration");
+		when(service.isClientSsnUnique(anyInt(), anyString())).thenReturn(false);
+		Assert.assertEquals(appController.updateClient(clients.get(0), result, model,""), "registration");
 	}
 
 	@Test
-	public void updateEmployeeWithSuccess(){
+	public void updateClientWithSuccess(){
 		when(result.hasErrors()).thenReturn(false);
-		when(service.isEmployeeSsnUnique(anyInt(), anyString())).thenReturn(true);
-		doNothing().when(service).updateEmployee(any(Employee.class));
-		Assert.assertEquals(appController.updateEmployee(employees.get(0), result, model, ""), "success");
-		Assert.assertEquals(model.get("success"), "Employee Axel updated successfully");
+		when(service.isClientSsnUnique(anyInt(), anyString())).thenReturn(true);
+		doNothing().when(service).updateClient(any(Client.class));
+		Assert.assertEquals(appController.updateClient(clients.get(0), result, model, ""), "success");
+		Assert.assertEquals(model.get("success"), "Client Axel updated successfully");
 	}
 	
 	
 	@Test
-	public void deleteEmployee(){
-		doNothing().when(service).deleteEmployeeBySsn(anyString());
-		Assert.assertEquals(appController.deleteEmployee("123"), "redirect:/list");
+	public void deleteClient(){
+		doNothing().when(service).deleteClientBySsn(anyString());
+		Assert.assertEquals(appController.deleteClient("123"), "redirect:/list");
 	}
 
-	public List<Employee> getEmployeeList(){
-		Employee e1 = new Employee();
+	public List<Client> getClientList(){
+		Client e1 = new Client();
 		e1.setId(1);
 		e1.setName("Axel");
 		e1.setJoiningDate(new LocalDate());
 		e1.setSalary(new BigDecimal(10000));
 		e1.setSsn("XXX111");
 		
-		Employee e2 = new Employee();
+		Client e2 = new Client();
 		e2.setId(2);
 		e2.setName("Jeremy");
 		e2.setJoiningDate(new LocalDate());
 		e2.setSalary(new BigDecimal(20000));
 		e2.setSsn("XXX222");
 		
-		employees.add(e1);
-		employees.add(e2);
-		return employees;
+		clients.add(e1);
+		clients.add(e2);
+		return clients;
 	}
 }

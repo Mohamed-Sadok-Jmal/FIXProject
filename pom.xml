@@ -21,6 +21,7 @@
 		<dbunit.version>2.2</dbunit.version>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 		<java.version>1.8</java.version>
+		<jackson.version>2.5.3</jackson.version>
 	</properties>
 
 	<dependencies>
@@ -146,8 +147,69 @@
 			<artifactId>jsoup</artifactId>
 			<version>1.10.1</version>
 		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
 
+		<!-- FIX dependencies -->
+		<dependency>
+			<groupId>quickfixj</groupId>
+			<artifactId>quickfixj-core</artifactId>
+			<version>1.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>quickfixj</groupId>
+			<artifactId>quickfixj-msg-fix40</artifactId>
+			<version>1.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>quickfixj</groupId>
+			<artifactId>quickfixj-msg-fix41</artifactId>
+			<version>1.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>quickfixj</groupId>
+			<artifactId>quickfixj-msg-fix42</artifactId>
+			<version>1.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>quickfixj</groupId>
+			<artifactId>quickfixj-msg-fix43</artifactId>
+			<version>1.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>quickfixj</groupId>
+			<artifactId>quickfixj-msg-fix44</artifactId>
+			<version>1.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.mina</groupId>
+			<artifactId>mina-core</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.3.0</version>
+		</dependency>
 	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>MarketceteraRepo</id>
+			<url>http://repo.marketcetera.org/maven</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+	</repositories>
 
 	<build>
 		<pluginManagement>

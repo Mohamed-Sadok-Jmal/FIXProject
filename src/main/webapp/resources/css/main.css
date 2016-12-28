@@ -6,7 +6,20 @@
 .navbar {
     border-radius: 0px;
 }
+/* body */
+body, p, span, a, h1, h2, h3, h4, h5, h6, div, button, td, tr, th, table {
+	font-family: 'Scada', Arial, Helvetica, sans-serif;
+	font-size: 13px;
+}
 /* header bottom */
 .img-profile{
 	height: 40px;
+}
+/* btn */
+.btn-buy{
+	color: #ffffff;
+	background-color: #008000;
+	border: none;
+	border-radius: 2px;
+	padding: 2px 5px;
 }
