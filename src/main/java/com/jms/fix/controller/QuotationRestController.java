@@ -16,7 +16,6 @@ import com.jms.fix.entity.Quotation;
 import com.jms.fix.service.QuotationService;
 
 @RestController
-@RequestMapping("/")
 public class QuotationRestController {
 	@Autowired
 	QuotationService quotationService;

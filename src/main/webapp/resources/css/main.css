@@ -23,3 +23,10 @@ body, p, span, a, h1, h2, h3, h4, h5, h6, div, button, td, tr, th, table {
 	border-radius: 2px;
 	padding: 2px 5px;
 }
+/* form */
+.form-control {
+	width: inherit;
+}
+.control-label{
+	text-align: left;
+}

@@ -49,6 +49,9 @@ public class Quotation {
 	@Column(name = "VARIATION")
 	private float variation;
 	
+	@Column(name = "NB_SHARES")
+	private int nbShares;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy="quotation", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private List<Order> orders = new ArrayList<Order>();
@@ -125,6 +128,14 @@ public class Quotation {
 		this.variation = variation;
 	}
 
+	public int getNbShares() {
+		return nbShares;
+	}
+
+	public void setNbShares(int nbShares) {
+		this.nbShares = nbShares;
+	}
+
 	public List<Order> getOrders() {
 		return orders;
 	}
@@ -132,5 +143,5 @@ public class Quotation {
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
 	}
-	
+		
 }

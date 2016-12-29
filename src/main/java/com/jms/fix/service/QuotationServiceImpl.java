@@ -3,6 +3,7 @@ package com.jms.fix.service;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -92,6 +93,11 @@ public class QuotationServiceImpl implements QuotationService {
 			    String str = td.get(index++).text();
 			    tableEntry.setVariation(Float.parseFloat(str.substring(0, str.length() - 1)));
 
+			    //random shares number
+			    Random r = new Random();
+			    int nbShares = r.nextInt((5000 - 100) + 1) + 100;
+			    tableEntry.setNbShares(nbShares);
+			    
 			    quotationsList.add(tableEntry); // Finally add it to the list
 			}
 

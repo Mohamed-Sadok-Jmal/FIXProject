@@ -38,22 +38,33 @@ public class Client {
 
 	@NotNull
 	@DateTimeFormat(pattern="dd/MM/yyyy") 
-	@Column(name = "JOINING_DATE", nullable = false)
+	@Column(name = "JOINING_DATE")
 	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
 	private LocalDate joiningDate;
+	
+	@Column(name = "CREDIT")
+	private float credit;
+	
+	@Column(name = "CASH_WAITING")
+	private float cashWaiting;
 
 	@NotNull
 	@Digits(integer=8, fraction=2)
-	@Column(name = "SALARY", nullable = false)
+	@Column(name = "SALARY")
 	private BigDecimal salary;
 	
 	@NotEmpty
-	@Column(name = "SSN", unique=true, nullable = false)
+	@Column(name = "SSN", unique=true)
 	private String ssn;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="client", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private List<Order> orders = new ArrayList<Order>();
+	
+	public Client() {
+		this.cashWaiting = 0f;
+		this.credit = 50000f;
+	}
 
 	public int getId() {
 		return id;
@@ -79,6 +90,22 @@ public class Client {
 		this.joiningDate = joiningDate;
 	}
 
+	public float getCredit() {
+		return credit;
+	}
+
+	public void setCredit(float credit) {
+		this.credit = credit;
+	}
+
+	public float getCashWaiting() {
+		return cashWaiting;
+	}
+
+	public void setCashWaiting(float cashWaiting) {
+		this.cashWaiting = cashWaiting;
+	}
+
 	public BigDecimal getSalary() {
 		return salary;
 	}
@@ -95,41 +122,12 @@ public class Client {
 		this.ssn = ssn;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		result = prime * result + ((ssn == null) ? 0 : ssn.hashCode());
-		return result;
+	public List<Order> getOrders() {
+		return orders;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof Client))
-			return false;
-		Client other = (Client) obj;
-		if (id != other.id)
-			return false;
-		if (ssn == null) {
-			if (other.ssn != null)
-				return false;
-		} else if (!ssn.equals(other.ssn))
-			return false;
-		return true;
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
-
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", joiningDate="
-				+ joiningDate + ", salary=" + salary + ", ssn=" + ssn + "]";
-	}
-	
-	
-	
 
 }

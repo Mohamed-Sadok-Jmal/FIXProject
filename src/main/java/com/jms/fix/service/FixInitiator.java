@@ -1,7 +1,6 @@
 package com.jms.fix.service;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import quickfix.ApplicationAdapter;
 import quickfix.ConfigError;
@@ -13,23 +12,12 @@ import quickfix.IncorrectTagValue;
 import quickfix.Message;
 import quickfix.RejectLogon;
 import quickfix.ScreenLogFactory;
-import quickfix.Session;
 import quickfix.SessionID;
-import quickfix.SessionNotFound;
 import quickfix.SessionSettings;
 import quickfix.SocketInitiator;
 import quickfix.UnsupportedMessageType;
-import quickfix.field.ClOrdID;
 import quickfix.field.ExecType;
-import quickfix.field.HandlInst;
-import quickfix.field.OrdType;
-import quickfix.field.OrderQty;
-import quickfix.field.Price;
-import quickfix.field.Side;
-import quickfix.field.Symbol;
-import quickfix.field.TransactTime;
 import quickfix.fix42.ExecutionReport;
-import quickfix.fix42.NewOrderSingle;
 
 public class FixInitiator extends ApplicationAdapter {
 

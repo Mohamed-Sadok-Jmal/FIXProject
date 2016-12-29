@@ -40,6 +40,7 @@
 							<li><a href="#">Portefeuille</a></li>
 							<li><a href="#">Passer un ordre</a></li>
 							<li><a href="#">Mouvements</a></li>
+							<li><a href="<c:url value='/new' />">Add New Client</a></li>							
 						</ul>
 						<form class="navbar-form navbar-left">
 							<div class="form-group">

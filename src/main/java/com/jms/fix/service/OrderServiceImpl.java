@@ -34,6 +34,11 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public List<Order> findAllOrders() {
 		return dao.findAllOrders();
-	}	
+	}
+
+	@Override
+	public void saveOrderWithClientAndQuotation(Order order, int clientId, int quotationId) {
+		dao.saveOrderWithClientAndQuotation(order, clientId, quotationId);		
+	}
 	
 }

@@ -14,7 +14,7 @@
 		<div class="container">
 			<div class="row"><span class="text-success">message : ${success}</span></div>
 			<div class="row">
-				<a href="<c:url value='/list' />">Go back to List of All Employees</a>
+				<a href="<c:url value='/list' />">Go back to List of All Clients</a>
 			</div>
 		</div>
 		

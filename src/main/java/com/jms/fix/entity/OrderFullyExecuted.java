@@ -11,8 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ORDER_PENDING")
-public class Order {
+@Table(name="ORDER_FULLY_EXECUTED")
+public class OrderFullyExecuted {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

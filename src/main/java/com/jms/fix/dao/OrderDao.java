@@ -10,6 +10,8 @@ public interface OrderDao {
 
 	void saveOrder(Order order);
 	
+	void saveOrderWithClientAndQuotation(Order order, int clientId, int quotationId);
+	
 	void deleteOrderById(int id);
 	
 	List<Order> findAllOrders();

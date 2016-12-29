@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Employee Registration Form</title>
+		<title>Client Registration Form</title>
 		<!-- css -->
 		<link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
 		<link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
@@ -15,7 +15,7 @@
 		<div class="container">
 		<h2>Registration Form</h2>
 	
-		<form:form method="POST" modelAttribute="employee">
+		<form:form method="POST" modelAttribute="client">
 			<form:input type="hidden" path="id" id="id" />
 			<div class="form-group row">
 				<label for="name">Name: </label>
@@ -50,7 +50,7 @@
 		</form:form>
 		<br />
 		<br /> Go back to
-		<a href="<c:url value='/list' />">List of All Employees</a>
+		<a href="<c:url value='/list' />">List of All Clients</a>
 		</div>
 		
 		<!-- scripts -->

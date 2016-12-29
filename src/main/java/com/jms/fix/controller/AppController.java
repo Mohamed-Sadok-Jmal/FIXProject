@@ -1,6 +1,5 @@
 package com.jms.fix.controller;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -18,22 +17,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.jms.fix.entity.Client;
+import com.jms.fix.entity.Order;
 import com.jms.fix.entity.Quotation;
 import com.jms.fix.service.ClientService;
 import com.jms.fix.service.FixInitiator;
 import com.jms.fix.service.OrderService;
 import com.jms.fix.service.QuotationService;
 
-import quickfix.ApplicationAdapter;
 import quickfix.ConfigError;
-import quickfix.DefaultMessageFactory;
-import quickfix.FileStoreFactory;
-import quickfix.ScreenLogFactory;
 import quickfix.Session;
 import quickfix.SessionID;
 import quickfix.SessionNotFound;
-import quickfix.SessionSettings;
-import quickfix.SocketInitiator;
 import quickfix.field.ClOrdID;
 import quickfix.field.HandlInst;
 import quickfix.field.OrdType;
@@ -70,6 +64,9 @@ public class AppController {
 		List<Quotation> quotations = quotationService.saveAllQuotationsFinded();
 //		List<Quotation> quotations = quotationService.findAllQuotations();
 		
+		//get client
+		//Client client = clientService.findById(1);
+		
 		/* begin fix */
 		try {
 			fixInitiator = FixInitiator.getInstance();
@@ -99,7 +96,7 @@ public class AppController {
 		} catch (InterruptedException e1) {
 			e1.printStackTrace();
 		}
-		/* end fix */
+		/* end fix */	
 		
 		model.addAttribute("clients", clients);
 		model.addAttribute("quotations", quotations);
